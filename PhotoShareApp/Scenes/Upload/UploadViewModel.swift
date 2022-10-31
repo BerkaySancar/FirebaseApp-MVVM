@@ -24,16 +24,19 @@ final class UploadViewModel: UploadViewModelProtocol {
     
 // MARK: - Did Tap Upload Button
     func didTapUploadButton(data: Data, comment: String) {
+        
+        let uuidString = UUID().uuidString
+        
         if comment.isEmpty {
             self.delegate?.onError(title: "Error!", message: GeneralError.commentEmptyError.rawValue)
         } else {
             self.delegate?.setLoading(isLoading: true)
-            StorageManager.shared.imageStorage(image: data) { results in
+            StorageManager.shared.imageStorage(uuidString: uuidString, image: data) { results in
                 switch results {
                 case .failure(let failure):
                     self.delegate?.onError(title: "Error!", message: failure.rawValue)
                 case .success(_):
-                    StorageManager.shared.downloadImageURL { results in
+                    StorageManager.shared.downloadImageURL(uuidString: uuidString) { results in
                         switch results {
                         case .failure(let error):
                             self.delegate?.onError(title: "Error!", message: error.rawValue)
