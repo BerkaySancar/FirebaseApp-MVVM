@@ -1,6 +1,5 @@
 //
 //  ViewController.swift
-//  FotografPaylasmaUygulamasi
 //
 //  Created by Berkay Sancar on 15.04.2022.
 //

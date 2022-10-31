@@ -1,10 +1,3 @@
-//
-//  Post.swift
-//  FotografPaylasmaUygulamasi
-//
-//  Created by Berkay Sancar on 17.04.2022.
-//
-
 import Foundation
 
 struct Post {

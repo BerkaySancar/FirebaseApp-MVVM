@@ -1,6 +1,5 @@
 //
 //  SettingsViewModel.swift
-//  FotografPaylasmaUygulamasi
 //
 //  Created by Berkay Sancar on 20.10.2022.
 //

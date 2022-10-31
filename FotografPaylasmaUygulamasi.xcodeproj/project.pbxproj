@@ -87,7 +87,7 @@
 		B1193F43280A015E003A0E28 = {
 			isa = PBXGroup;
 			children = (
-				B1193F4E280A015E003A0E28 /* FirebaseApp */,
+				B1193F4E280A015E003A0E28 /* FotografPaylasmaUygulamasi */,
 				B1193F4D280A015E003A0E28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,7 +100,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B1193F4E280A015E003A0E28 /* FirebaseApp */ = {
+		B1193F4E280A015E003A0E28 /* FotografPaylasmaUygulamasi */ = {
 			isa = PBXGroup;
 			children = (
 				B1748B34290FDE6300EDCB13 /* FotografPaylasmaUygulamasi.entitlements */,
@@ -111,7 +111,7 @@
 				B1BFADFA28BE26C9007AF63E /* Model */,
 				B1BFADFC28BE26D3007AF63E /* Scene */,
 			);
-			path = FirebaseApp;
+			path = FotografPaylasmaUygulamasi;
 			sourceTree = "<group>";
 		};
 		B11B839A2906988A008F1289 /* Managers */ = {
@@ -319,7 +319,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B1193F47280A015E003A0E28 /* Build configuration list for PBXProject "FirebaseApp" */;
+			buildConfigurationList = B1193F47280A015E003A0E28 /* Build configuration list for PBXProject "FotografPaylasmaUygulamasi" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -588,7 +588,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B1193F47280A015E003A0E28 /* Build configuration list for PBXProject "FirebaseApp" */ = {
+		B1193F47280A015E003A0E28 /* Build configuration list for PBXProject "FotografPaylasmaUygulamasi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1193F5E280A015E003A0E28 /* Debug */,

@@ -1,10 +1,3 @@
-//
-//  UploadManager.swift
-//  FotografPaylasmaUygulamasi
-//
-//  Created by Berkay Sancar on 24.10.2022.
-//
-
 import Foundation
 import Firebase
 
