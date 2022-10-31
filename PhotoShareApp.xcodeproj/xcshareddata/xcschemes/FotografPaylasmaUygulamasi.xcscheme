@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B1193F4B280A015E003A0E28"
-               BuildableName = "FotografPaylasmaUygulamasi.app"
-               BlueprintName = "FotografPaylasmaUygulamasi"
-               ReferencedContainer = "container:FotografPaylasmaUygulamasi.xcodeproj">
+               BuildableName = "PhotoShareApp.app"
+               BlueprintName = "PhotoShareApp"
+               ReferencedContainer = "container:PhotoShareApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B1193F4B280A015E003A0E28"
-            BuildableName = "FotografPaylasmaUygulamasi.app"
-            BlueprintName = "FotografPaylasmaUygulamasi"
-            ReferencedContainer = "container:FotografPaylasmaUygulamasi.xcodeproj">
+            BuildableName = "PhotoShareApp.app"
+            BlueprintName = "PhotoShareApp"
+            ReferencedContainer = "container:PhotoShareApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B1193F4B280A015E003A0E28"
-            BuildableName = "FotografPaylasmaUygulamasi.app"
-            BlueprintName = "FotografPaylasmaUygulamasi"
-            ReferencedContainer = "container:FotografPaylasmaUygulamasi.xcodeproj">
+            BuildableName = "PhotoShareApp.app"
+            BlueprintName = "PhotoShareApp"
+            ReferencedContainer = "container:PhotoShareApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
