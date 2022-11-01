@@ -5,9 +5,9 @@
 - Swift UIKit
 - Storyboard
 - Auto Layout
-- CocoaPods
-- Firebase Authentication & Firestore Databese & Storage
-- Sign in with Apple
+- **CocoaPods**
+- **Firebase Authentication & Firestore Databese & Storage**
+- **Sign in with Apple**
 - UITableView
 - PHPickerViewController
 
