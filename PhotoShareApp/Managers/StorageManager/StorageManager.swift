@@ -16,8 +16,7 @@ protocol StorageManagerProtocol {
 struct StorageManager: StorageManagerProtocol {
     
     static let shared = StorageManager()
-    
-//    private let mediaFolderImageReference = Storage.storage().reference().child("media").child("\(UUID().uuidString).jpg")
+
     private let mediaFolderImageReference = Storage.storage().reference().child("media")
     
     private init() {}

@@ -14,8 +14,8 @@ protocol LoginViewModelProtocol {
     func didTapSignIn(email: String, password: String)
     func didTapLogin(email: String, password: String)
     func didTapSignInWithApple()
-    func didCompleteWithAuthorization(authorization: ASAuthorization)
     func createAppleIDRequest() -> ASAuthorizationAppleIDRequest
+    func didCompleteWithAuthorization(authorization: ASAuthorization)
     func viewDidLoad()
 }
 
@@ -60,6 +60,18 @@ final class LoginViewModel: LoginViewModelProtocol {
         self.delegate?.performSignIn()
     }
     
+    func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let nonce = RandomNonceString.create()
+        request.nonce = SHA.sha256(nonce)
+        self.currentNonce = nonce
+        
+        return request
+    }
+    
     func didCompleteWithAuthorization(authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
@@ -86,18 +98,7 @@ final class LoginViewModel: LoginViewModelProtocol {
             }
         }
     }
-    
-    func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
-        let nonce = RandomNonceString.create()
-        request.nonce = SHA.sha256(nonce)
-        self.currentNonce = nonce
-        
-        return request
-    }
+  
 // MARK: - View did load
     func viewDidLoad() {
         self.delegate?.prepareSignInWithApple()
