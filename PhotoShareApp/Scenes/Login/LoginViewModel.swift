@@ -9,8 +9,6 @@ import AuthenticationServices
 
 protocol LoginViewModelProtocol {
     
-    var delegate: LoginViewDelegate? { get set }
-    
     func didTapSignIn(email: String, password: String)
     func didTapLogin(email: String, password: String)
     func didTapSignInWithApple()
@@ -21,20 +19,24 @@ protocol LoginViewModelProtocol {
 
 final class LoginViewModel: LoginViewModelProtocol {
     
-    weak var delegate: LoginViewDelegate?
+    private weak var view: LoginViewDelegate?
     private var currentNonce: String?
+    
+    init(view: LoginViewDelegate) {
+        self.view = view
+    }
 
 // MARK: - Sign in button Action
     func didTapSignIn(email: String, password: String) {
         if email.isEmpty, password.isEmpty {
-            self.delegate?.onError(title: "Error!", message: GeneralError.emptyUsernameOrPasswordError.rawValue)
+            self.view?.onError(title: "Error!", message: GeneralError.emptyUsernameOrPasswordError.rawValue)
         } else {
-            LoginSignUpManager.shared.signUp(email: email, password: password) { results in
+            AuthManager.shared.signUp(email: email, password: password) { results in
                 switch results {
                 case .failure(let error):
-                    self.delegate?.onError(title: "Error!", message: error.rawValue)
+                    self.view?.onError(title: "Error!", message: error.rawValue)
                 case .success(let segueID):
-                    self.delegate?.performSegue(with: segueID)
+                    self.view?.performSegue(with: segueID)
                 }
             }
         }
@@ -43,21 +45,21 @@ final class LoginViewModel: LoginViewModelProtocol {
 // MARK: - Login Button Action
     func didTapLogin(email: String, password: String) {
         if !email.isEmpty, !password.isEmpty {
-            LoginSignUpManager.shared.login(email: email, password: password) { results in
+            AuthManager.shared.login(email: email, password: password) { results in
                 switch results {
                 case .failure(let error):
-                    self.delegate?.onError(title: "Error!", message: error.rawValue)
+                    self.view?.onError(title: "Error!", message: error.rawValue)
                 case .success(let segueID):
-                    self.delegate?.performSegue(with: segueID)
+                    self.view?.performSegue(with: segueID)
                 }
             }
         } else {
-            self.delegate?.onError(title: "Error!", message: GeneralError.emptyUsernameOrPasswordError.rawValue)
+            self.view?.onError(title: "Error!", message: GeneralError.emptyUsernameOrPasswordError.rawValue)
         }
     }
 // MARK: - APPLE SIGN IN LOGICS
     func didTapSignInWithApple() {
-        self.delegate?.performSignIn()
+        self.view?.performSignInWithApple()
     }
     
     func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
@@ -86,14 +88,14 @@ final class LoginViewModel: LoginViewModelProtocol {
                 return
             }
         
-            let credential = LoginSignUpManager.shared.createCredential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+            let credential = AuthManager.shared.createCredential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             
-            LoginSignUpManager.shared.signInWithApple(credential: credential) { (results) in
+            AuthManager.shared.signInWithApple(credential: credential) { (results) in
                 switch results {
                 case .failure(let error):
-                    self.delegate?.onError(title: "Error!", message: error.rawValue)
+                    self.view?.onError(title: "Error!", message: error.rawValue)
                 case .success(let segueID):
-                    self.delegate?.performSegue(with: segueID)
+                    self.view?.performSegue(with: segueID)
                 }
             }
         }
@@ -101,6 +103,6 @@ final class LoginViewModel: LoginViewModelProtocol {
   
 // MARK: - View did load
     func viewDidLoad() {
-        self.delegate?.prepareSignInWithApple()
+        self.view?.prepareSignInWithApple()
     }
 }

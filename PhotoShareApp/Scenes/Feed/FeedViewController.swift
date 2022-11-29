@@ -7,7 +7,7 @@
 import UIKit
 import SDWebImage
 
-protocol FeedViewDelegate: AnyObject {
+protocol FeedViewProtocol: AnyObject {
     
     func dataRefreshed()
     func setLoading(isLoading: Bool)
@@ -22,13 +22,12 @@ final class FeedViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var currentUserLabel: UILabel!
     
-    private lazy var viewModel: FeedViewModelProtocol = FeedViewModel()
+    private lazy var viewModel: FeedViewModelProtocol = FeedViewModel(view: self)
  
 //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.delegate = self
         viewModel.viewDidLoad()
     }
 }
@@ -50,7 +49,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 //MARK: - FeedViewDelegate
-extension FeedViewController: FeedViewDelegate {
+extension FeedViewController: FeedViewProtocol {
     
     func prepareTableView() {
         tableView.delegate = self

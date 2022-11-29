@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B104E51C290940BD007488C3 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B104E51B290940BD007488C3 /* ErrorModel.swift */; };
-		B104E51E290970A4007488C3 /* LoginSignUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B104E51D290970A4007488C3 /* LoginSignUpManager.swift */; };
+		B104E51E290970A4007488C3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B104E51D290970A4007488C3 /* AuthManager.swift */; };
 		B1193F50280A015E003A0E28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1193F4F280A015E003A0E28 /* AppDelegate.swift */; };
 		B1193F52280A015E003A0E28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1193F51280A015E003A0E28 /* SceneDelegate.swift */; };
 		B1193F54280A015E003A0E28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1193F53280A015E003A0E28 /* LoginViewController.swift */; };
@@ -38,9 +38,19 @@
 		B1E023CC280C4F14006DE0F3 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E023CB280C4F14006DE0F3 /* PostModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B1C5B33529361C24008E1CD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1193F44280A015E003A0E28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1193F4B280A015E003A0E28;
+			remoteInfo = PhotoShareApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B104E51B290940BD007488C3 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
-		B104E51D290970A4007488C3 /* LoginSignUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpManager.swift; sourceTree = "<group>"; };
+		B104E51D290970A4007488C3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B1193F4C280A015E003A0E28 /* PhotoShareApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoShareApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1193F4F280A015E003A0E28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1193F51280A015E003A0E28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +74,7 @@
 		B19B35E22901D20800029C33 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		B19B35E42901D2B500029C33 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		B1B8134C290ED38400DE43F9 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		B1C5B33129361C24008E1CD6 /* PhotoShareAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoShareAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E023C4280C2E8E006DE0F3 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		B1E023CB280C4F14006DE0F3 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +89,13 @@
 				B17E53A3280A0C9700705EC0 /* FirebaseFirestore in Frameworks */,
 				B1E023C8280C46F6006DE0F3 /* SDWebImage in Frameworks */,
 				B17E53A5280A0C9700705EC0 /* FirebaseStorage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1C5B32E29361C24008E1CD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				B1193F4C280A015E003A0E28 /* PhotoShareApp.app */,
+				B1C5B33129361C24008E1CD6 /* PhotoShareAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,7 +138,7 @@
 			children = (
 				B1748B3D291015AA00EDCB13 /* PostManager */,
 				B1748B3E291015BC00EDCB13 /* StorageManager */,
-				B1748B3F291015C700EDCB13 /* LoginSignUpManager */,
+				B1748B3F291015C700EDCB13 /* AuthManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -159,12 +178,12 @@
 			path = StorageManager;
 			sourceTree = "<group>";
 		};
-		B1748B3F291015C700EDCB13 /* LoginSignUpManager */ = {
+		B1748B3F291015C700EDCB13 /* AuthManager */ = {
 			isa = PBXGroup;
 			children = (
-				B104E51D290970A4007488C3 /* LoginSignUpManager.swift */,
+				B104E51D290970A4007488C3 /* AuthManager.swift */,
 			);
-			path = LoginSignUpManager;
+			path = AuthManager;
 			sourceTree = "<group>";
 		};
 		B19B35D12901BB5F00029C33 /* Resources */ = {
@@ -304,6 +323,24 @@
 			productReference = B1193F4C280A015E003A0E28 /* PhotoShareApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B1C5B33029361C24008E1CD6 /* PhotoShareAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1C5B33729361C24008E1CD6 /* Build configuration list for PBXNativeTarget "PhotoShareAppTests" */;
+			buildPhases = (
+				B1C5B32D29361C24008E1CD6 /* Sources */,
+				B1C5B32E29361C24008E1CD6 /* Frameworks */,
+				B1C5B32F29361C24008E1CD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1C5B33629361C24008E1CD6 /* PBXTargetDependency */,
+			);
+			name = PhotoShareAppTests;
+			productName = PhotoShareAppTests;
+			productReference = B1C5B33129361C24008E1CD6 /* PhotoShareAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -311,11 +348,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					B1193F4B280A015E003A0E28 = {
 						CreatedOnToolsVersion = 13.3.1;
+					};
+					B1C5B33029361C24008E1CD6 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = B1193F4B280A015E003A0E28;
 					};
 				};
 			};
@@ -337,6 +378,7 @@
 			projectRoot = "";
 			targets = (
 				B1193F4B280A015E003A0E28 /* PhotoShareApp */,
+				B1C5B33029361C24008E1CD6 /* PhotoShareAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -353,6 +395,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1C5B32F29361C24008E1CD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -366,7 +415,7 @@
 				B19B35E12901C55F00029C33 /* SeguePerformable.swift in Sources */,
 				B19B35E32901D20800029C33 /* FeedViewModel.swift in Sources */,
 				B1193F54280A015E003A0E28 /* LoginViewController.swift in Sources */,
-				B104E51E290970A4007488C3 /* LoginSignUpManager.swift in Sources */,
+				B104E51E290970A4007488C3 /* AuthManager.swift in Sources */,
 				B17E53A9280A217E00705EC0 /* UploadViewController.swift in Sources */,
 				B1B8134D290ED38400DE43F9 /* UIViewController+Extension.swift in Sources */,
 				B1E023CC280C4F14006DE0F3 /* PostModel.swift in Sources */,
@@ -383,7 +432,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1C5B32D29361C24008E1CD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1C5B33629361C24008E1CD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1193F4B280A015E003A0E28 /* PhotoShareApp */;
+			targetProxy = B1C5B33529361C24008E1CD6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B1193F55280A015E003A0E28 /* Main.storyboard */ = {
@@ -587,6 +651,52 @@
 			};
 			name = Release;
 		};
+		B1C5B33829361C24008E1CD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ4V82589Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.berkaysancar.PhotoShareAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoShareApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PhotoShareApp";
+			};
+			name = Debug;
+		};
+		B1C5B33929361C24008E1CD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ4V82589Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.berkaysancar.PhotoShareAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoShareApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PhotoShareApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -604,6 +714,15 @@
 			buildConfigurations = (
 				B1193F61280A015E003A0E28 /* Debug */,
 				B1193F62280A015E003A0E28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1C5B33729361C24008E1CD6 /* Build configuration list for PBXNativeTarget "PhotoShareAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1C5B33829361C24008E1CD6 /* Debug */,
+				B1C5B33929361C24008E1CD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

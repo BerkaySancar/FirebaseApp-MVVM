@@ -6,7 +6,7 @@
 import UIKit
 import PhotosUI
 
-protocol UploadViewDelegate: AnyObject, SeguePerformable {
+protocol UploadViewProtocol: AnyObject, SeguePerformable {
     
     func onError(title: String, message: String)
     func setLoading(isLoading: Bool)
@@ -22,13 +22,12 @@ final class UploadViewController: UIViewController {
     @IBOutlet private weak var commentTextView: UITextView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    private lazy var viewModel: UploadViewModelProtocol = UploadViewModel()
+    private lazy var viewModel: UploadViewModelProtocol = UploadViewModel(view: self)
     
 // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.delegate = self
         viewModel.viewDidLoad()
     }
     
@@ -55,7 +54,7 @@ final class UploadViewController: UIViewController {
     }
 }
 // MARK: - Upload View Delegate
-extension UploadViewController: UploadViewDelegate {
+extension UploadViewController: UploadViewProtocol {
 
 // MARK: - Error
     func onError(title: String, message: String) {

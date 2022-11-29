@@ -9,8 +9,6 @@ import Firebase
 
 protocol UploadViewModelProtocol {
     
-    var delegate: UploadViewDelegate? { get set }
-    
     func didTapUploadButton(data: Data, comment: String)
     func didTapImage()
     func viewDidLoad()
@@ -18,9 +16,13 @@ protocol UploadViewModelProtocol {
 
 final class UploadViewModel: UploadViewModelProtocol {
     
-    weak var delegate: UploadViewDelegate?
+    private weak var view: UploadViewProtocol?
     
     private var post: [String : Any] = [:]
+    
+    init(view: UploadViewProtocol) {
+        self.view = view
+    }
     
 // MARK: - Did Tap Upload Button
     func didTapUploadButton(data: Data, comment: String) {
@@ -28,18 +30,18 @@ final class UploadViewModel: UploadViewModelProtocol {
         let uuidString = UUID().uuidString
         
         if comment.isEmpty {
-            self.delegate?.onError(title: "Error!", message: GeneralError.commentEmptyError.rawValue)
+            self.view?.onError(title: "Error!", message: GeneralError.commentEmptyError.rawValue)
         } else {
-            self.delegate?.setLoading(isLoading: true)
+            self.view?.setLoading(isLoading: true)
             StorageManager.shared.imageStorage(uuidString: uuidString, image: data) { results in
                 switch results {
                 case .failure(let failure):
-                    self.delegate?.onError(title: "Error!", message: failure.rawValue)
+                    self.view?.onError(title: "Error!", message: failure.rawValue)
                 case .success(_):
                     StorageManager.shared.downloadImageURL(uuidString: uuidString) { results in
                         switch results {
                         case .failure(let error):
-                            self.delegate?.onError(title: "Error!", message: error.rawValue)
+                            self.view?.onError(title: "Error!", message: error.rawValue)
                         case .success(let url):
                             self.post["imageUrl"] = url
                             self.post["comment"] = comment
@@ -50,10 +52,10 @@ final class UploadViewModel: UploadViewModelProtocol {
                                 guard let self else { return }
                                 switch results {
                                 case .failure(let error):
-                                    self.delegate?.onError(title: "Error!", message: error.rawValue)
+                                    self.view?.onError(title: "Error!", message: error.rawValue)
                                 case .success(_):
-                                    self.delegate?.setLoading(isLoading: false)
-                                    self.delegate?.uploadSuccess()
+                                    self.view?.setLoading(isLoading: false)
+                                    self.view?.uploadSuccess()
                                 }
                             }
                         }
@@ -64,13 +66,13 @@ final class UploadViewModel: UploadViewModelProtocol {
     }
 // MARK: - viewDidLoad
     func viewDidLoad() {
-        self.delegate?.configure()
-        self.delegate?.setLoading(isLoading: false)
-        self.delegate?.prepareImagePicker()
+        self.view?.configure()
+        self.view?.setLoading(isLoading: false)
+        self.view?.prepareImagePicker()
     }
     
 // MARK: - didTapImage
     func didTapImage() {
-        self.delegate?.presentImagePicker()
+        self.view?.presentImagePicker()
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="FotografPaylasmaUygulamasi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="PhotoShareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,9 +20,6 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ldr-Vs-FHD">
                                 <rect key="frame" x="20" y="330" width="374" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="374" id="byw-Qh-8Vi"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
@@ -39,8 +36,8 @@
                                 <rect key="frame" x="87" y="469" width="84" height="45"/>
                                 <color key="backgroundColor" systemColor="tintColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="84" id="MUB-A2-jDz"/>
-                                    <constraint firstAttribute="height" constant="45" id="Mxj-RB-4Fh"/>
+                                    <constraint firstAttribute="width" constant="84" id="dUp-t5-wqe"/>
+                                    <constraint firstAttribute="height" constant="45" id="jx8-tX-1WI"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up">
@@ -65,18 +62,21 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7as-Dp-iKj">
                                 <rect key="frame" x="20" y="385" width="374" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="374" id="tIa-h6-3Ty"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcB-zS-Hsj" customClass="ASAuthorizationAppleIDButton">
+                                <rect key="frame" x="20" y="548" width="374" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sign in with Apple"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkL-oY-wrl">
                                 <rect key="frame" x="243" y="469" width="84" height="45"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="fDv-bw-BBF"/>
-                                    <constraint firstAttribute="width" constant="84" id="qfK-dP-jgz"/>
+                                    <constraint firstAttribute="width" constant="84" id="Bcr-hQ-d9e"/>
+                                    <constraint firstAttribute="height" constant="45" id="eVy-VR-kaZ"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login">
@@ -91,35 +91,29 @@
                                     <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DRO-6M-6kn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcB-zS-Hsj" customClass="ASAuthorizationAppleIDButton">
-                                <rect key="frame" x="20" y="548" width="374" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign in with Apple"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                         <constraints>
-                            <constraint firstItem="IcB-zS-Hsj" firstAttribute="top" secondItem="UhY-JE-ubc" secondAttribute="bottom" constant="34" id="0Jz-pW-4eD"/>
                             <constraint firstItem="7as-Dp-iKj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="216-VZ-UCM"/>
-                            <constraint firstItem="UhY-JE-ubc" firstAttribute="top" secondItem="7as-Dp-iKj" secondAttribute="bottom" constant="50" id="AfV-bs-y4D"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IcB-zS-Hsj" secondAttribute="trailing" constant="20" id="7t4-8Q-bB1"/>
                             <constraint firstItem="ldr-Vs-FHD" firstAttribute="top" secondItem="V2C-L4-NxY" secondAttribute="bottom" constant="31.5" id="CZ8-MW-voo"/>
-                            <constraint firstItem="UhY-JE-ubc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="Cyc-nI-nCa"/>
+                            <constraint firstItem="IcB-zS-Hsj" firstAttribute="top" secondItem="7as-Dp-iKj" secondAttribute="bottom" constant="129" id="CuR-Mn-t2h"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7as-Dp-iKj" secondAttribute="trailing" constant="20" id="G1Q-EI-Spg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ldr-Vs-FHD" secondAttribute="trailing" constant="20" id="GFK-Pl-39s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V2C-L4-NxY" secondAttribute="trailing" constant="115" id="Hio-Q0-EgR"/>
                             <constraint firstItem="Bgz-eZ-5A9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="JCz-pm-oIL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bgz-eZ-5A9" secondAttribute="trailing" constant="87" id="N6v-8V-6kh"/>
                             <constraint firstItem="V2C-L4-NxY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="117" id="TQk-zf-iG9"/>
+                            <constraint firstItem="UhY-JE-ubc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="Tyi-wu-2V1"/>
+                            <constraint firstItem="IcB-zS-Hsj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="V4T-Uj-f3B"/>
                             <constraint firstItem="ldr-Vs-FHD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Y4M-K1-pNI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MkL-oY-wrl" secondAttribute="trailing" constant="87" id="YAk-0z-SZ9"/>
+                            <constraint firstItem="MkL-oY-wrl" firstAttribute="top" secondItem="7as-Dp-iKj" secondAttribute="bottom" constant="50" id="aK9-DA-Kiq"/>
                             <constraint firstItem="7as-Dp-iKj" firstAttribute="top" secondItem="ldr-Vs-FHD" secondAttribute="bottom" constant="21" id="iln-Pg-JDf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MkL-oY-wrl" secondAttribute="trailing" constant="87" id="jRe-Ng-MGZ"/>
                             <constraint firstItem="Bgz-eZ-5A9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="lZ9-xi-Zdk"/>
-                            <constraint firstItem="IcB-zS-Hsj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="nVS-OD-jCa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IcB-zS-Hsj" secondAttribute="trailing" constant="20" id="nVx-rV-su1"/>
+                            <constraint firstItem="UhY-JE-ubc" firstAttribute="top" secondItem="7as-Dp-iKj" secondAttribute="bottom" constant="50" id="ncN-U2-yes"/>
                             <constraint firstItem="V2C-L4-NxY" firstAttribute="top" secondItem="Bgz-eZ-5A9" secondAttribute="bottom" constant="46.5" id="ugA-Du-lhZ"/>
-                            <constraint firstItem="MkL-oY-wrl" firstAttribute="top" secondItem="7as-Dp-iKj" secondAttribute="bottom" constant="50" id="vfE-ZQ-d4v"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rwU-Uy-IfT"/>
@@ -137,7 +131,7 @@
         <!--Upload-->
         <scene sceneID="S0g-hU-fR7">
             <objects>
-                <viewController id="qi9-Yq-EgK" customClass="UploadViewController" customModule="FotografPaylasmaUygulamasi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qi9-Yq-EgK" customClass="UploadViewController" customModule="PhotoShareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="69y-YC-66p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,7 +264,7 @@
         <!--Settings-->
         <scene sceneID="C7g-ed-4gF">
             <objects>
-                <viewController id="it5-GF-zwY" customClass="SettingsViewController" customModule="FotografPaylasmaUygulamasi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="it5-GF-zwY" customClass="SettingsViewController" customModule="PhotoShareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uSU-qX-JxP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -329,7 +323,7 @@
         <!--Feed-->
         <scene sceneID="iqU-gX-0d2">
             <objects>
-                <viewController id="Ysl-MQ-7c8" customClass="FeedViewController" customModule="FotografPaylasmaUygulamasi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ysl-MQ-7c8" customClass="FeedViewController" customModule="PhotoShareApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E0A-pe-ftS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,7 +332,7 @@
                                 <rect key="frame" x="0.0" y="97" width="414" height="716"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="feedCell" rowHeight="390" id="RCR-pi-y8s" customClass="FeedCell" customModule="FotografPaylasmaUygulamasi" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="feedCell" rowHeight="390" id="RCR-pi-y8s" customClass="FeedCell" customModule="PhotoShareApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="390"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RCR-pi-y8s" id="Bab-Jq-pom">

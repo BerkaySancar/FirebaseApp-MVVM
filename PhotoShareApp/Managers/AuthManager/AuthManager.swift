@@ -8,23 +8,23 @@
 import Foundation
 import Firebase
 
-protocol LoginSignUpManagerProtocol {
+protocol AuthManagerProtocol {
     func login(email: String, password: String, completion: @escaping (Result<String, FirebaseError>) -> Void)
     func signUp(email: String, password: String, completion: @escaping (Result<String, FirebaseError>) -> Void)
     func signInWithApple(credential: OAuthCredential, completion: @escaping (Result<String, FirebaseError>) -> Void)
     func signOut(completion: @escaping (Result<String, FirebaseError>) -> Void)
 }
 
-struct LoginSignUpManager: LoginSignUpManagerProtocol {
+struct AuthManager: AuthManagerProtocol {
     
-    static let shared = LoginSignUpManager()
+    static let shared = AuthManager()
     
     private let auth = Auth.auth()
     
     private init() {}
 }
 
-extension LoginSignUpManager {
+extension AuthManager {
     
 // MARK: - Login with email
     func login(email: String, password: String, completion: @escaping (Result<String, FirebaseError>) -> Void) {

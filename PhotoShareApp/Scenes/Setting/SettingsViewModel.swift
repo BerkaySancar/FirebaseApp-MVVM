@@ -9,23 +9,25 @@ import Firebase
 
 protocol SettingsViewModelProtocol {
     
-    var delegate: SettingsViewDelegate? { get set }
-    
     func didTapSignOut()
 }
 
 final class SettingsViewModel: SettingsViewModelProtocol {
     
-    weak var delegate: SettingsViewDelegate?
+    private weak var view: SettingsViewProtocol?
+    
+    init(view: SettingsViewProtocol) {
+        self.view = view
+    }
     
     func didTapSignOut() {
         
-        LoginSignUpManager.shared.signOut { results in
+        AuthManager.shared.signOut { results in
             switch results {
             case .success(let segueID):
-                self.delegate?.performSegue(with: segueID)
+                self.view?.performSegue(with: segueID)
             case .failure(let error):
-                self.delegate?.onError(title: "Error!", message: error.rawValue)
+                self.view?.onError(title: "Error!", message: error.rawValue)
             }
         }
     }

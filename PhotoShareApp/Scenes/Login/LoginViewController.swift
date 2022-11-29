@@ -11,7 +11,7 @@ protocol LoginViewDelegate: AnyObject, SeguePerformable {
     
     func onError(title: String, message: String)
     func prepareSignInWithApple()
-    func performSignIn()
+    func performSignInWithApple()
 }
 
 final class LoginViewController: UIViewController {
@@ -20,12 +20,11 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var signInWithApple: ASAuthorizationAppleIDButton!
     
-    private lazy var viewModel: LoginViewModelProtocol = LoginViewModel()
+    private lazy var viewModel: LoginViewModelProtocol = LoginViewModel(view: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.delegate = self
         viewModel.viewDidLoad()
         
         self.hideKeyboardWhenTappedAround()
@@ -57,7 +56,6 @@ final class LoginViewController: UIViewController {
 // MARK: - ASAuthorizationControllerDelegate
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        
         viewModel.didCompleteWithAuthorization(authorization: authorization)
     }
 }
@@ -75,7 +73,7 @@ extension LoginViewController: LoginViewDelegate {
         signInWithApple.addTarget(self, action: #selector(didTapSignInWithApple), for: UIControl.Event.touchUpInside)
     }
     
-    func performSignIn() {
+    func performSignInWithApple() {
         let request = viewModel.createAppleIDRequest()
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         

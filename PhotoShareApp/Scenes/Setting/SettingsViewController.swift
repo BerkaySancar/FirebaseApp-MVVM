@@ -6,29 +6,26 @@
 
 import UIKit
 
-protocol SettingsViewDelegate: AnyObject, SeguePerformable {
+protocol SettingsViewProtocol: AnyObject, SeguePerformable {
     
     func onError(title: String, message: String)
 }
 
 final class SettingsViewController: UIViewController {
     
-    private lazy var viewModel: SettingsViewModelProtocol = SettingsViewModel()
+    private lazy var viewModel: SettingsViewModelProtocol = SettingsViewModel(view: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel.delegate = self
     }
     
     @IBAction func didTapSignOut(_ sender: Any) {
-        
         viewModel.didTapSignOut()
     }
 }
 
 //MARK: - SettingsViewDelegate
-extension SettingsViewController: SettingsViewDelegate {
+extension SettingsViewController: SettingsViewProtocol {
     
     func onError(title: String, message: String) {
         self.errorMessage(titleInput: title, messageInput: message)
