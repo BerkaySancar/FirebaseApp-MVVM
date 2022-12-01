@@ -7,7 +7,7 @@
 import UIKit
 import AuthenticationServices
 
-protocol LoginViewDelegate: AnyObject, SeguePerformable {
+protocol LoginViewProtocol: AnyObject, SeguePerformable {
     
     func onError(title: String, message: String)
     func prepareSignInWithApple()
@@ -67,7 +67,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     }
 }
 // MARK: - Login View Delegate
-extension LoginViewController: LoginViewDelegate {
+extension LoginViewController: LoginViewProtocol {
     
     func prepareSignInWithApple() {
         signInWithApple.addTarget(self, action: #selector(didTapSignInWithApple), for: UIControl.Event.touchUpInside)

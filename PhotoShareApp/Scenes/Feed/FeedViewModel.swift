@@ -17,22 +17,27 @@ protocol FeedViewModelProtocol {
 final class FeedViewModel: FeedViewModelProtocol {
     
     private weak var view: FeedViewProtocol?
+    private let postManager: PostManagerProtocol
+    private let authManager: AuthManagerProtocol
     
     var postArr: [Post] = []
     
-    init(view: FeedViewProtocol) {
+    init(view: FeedViewProtocol,
+         postManager: PostManagerProtocol = PostManager.shared,
+         authManager: AuthManagerProtocol = AuthManager.shared) {
         self.view = view
+        self.postManager = postManager
+        self.authManager = authManager
     }
     
     private func getFirebaseData() {
-        self.view?.setLoading(isLoading: true)
-        
-        PostManager.shared.getPosts { [weak self] (results) in
+        self.view?.beginRefreshing()
+        postManager.getPosts { [weak self] (results) in
             guard let self else { return }
-            self.view?.setLoading(isLoading: false)
             switch results {
             case .success(let posts):
                 self.postArr = posts
+                self.view?.endRefreshing()
                 self.view?.dataRefreshed()
             case .failure(let error):
                 self.view?.onError(title: "Error!", message: error.rawValue)
@@ -40,9 +45,8 @@ final class FeedViewModel: FeedViewModelProtocol {
         }
     }
     
-    private func getCurrentUserEmail() {
-        guard let email = Auth.auth().currentUser?.email else { return }
-        self.view?.showCurrentUserEmail(email: email)
+    func getCurrentUserEmail() {
+        self.view?.showCurrentUserEmail(email: authManager.showCurrentUserEmail())
     }
     
     func viewDidLoad() {

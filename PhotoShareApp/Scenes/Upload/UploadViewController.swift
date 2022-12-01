@@ -9,7 +9,8 @@ import PhotosUI
 protocol UploadViewProtocol: AnyObject, SeguePerformable {
     
     func onError(title: String, message: String)
-    func setLoading(isLoading: Bool)
+    func beginRefreshing()
+    func endRefreshing()
     func configure()
     func prepareImagePicker()
     func presentImagePicker()
@@ -87,14 +88,15 @@ extension UploadViewController: UploadViewProtocol {
     }
     
 // MARK: - Set loading
-    func setLoading(isLoading: Bool) {
-        if isLoading == true {
-            self.activityIndicator.isHidden = false
-            self.activityIndicator.startAnimating()
-        } else {
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-        }
+    
+    func beginRefreshing() {
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+    
+    func endRefreshing() {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
     }
 }
 

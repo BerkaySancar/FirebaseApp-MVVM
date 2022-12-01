@@ -15,14 +15,15 @@ protocol SettingsViewModelProtocol {
 final class SettingsViewModel: SettingsViewModelProtocol {
     
     private weak var view: SettingsViewProtocol?
+    private let authManager: AuthManagerProtocol
     
-    init(view: SettingsViewProtocol) {
+    init(view: SettingsViewProtocol, authManager: AuthManagerProtocol = AuthManager.shared) {
         self.view = view
+        self.authManager = authManager
     }
     
     func didTapSignOut() {
-        
-        AuthManager.shared.signOut { results in
+        authManager.signOut { results in
             switch results {
             case .success(let segueID):
                 self.view?.performSegue(with: segueID)

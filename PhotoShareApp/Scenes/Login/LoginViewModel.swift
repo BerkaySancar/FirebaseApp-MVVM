@@ -6,6 +6,7 @@
 
 import Foundation
 import AuthenticationServices
+import FirebaseAuth
 
 protocol LoginViewModelProtocol {
     
@@ -19,11 +20,14 @@ protocol LoginViewModelProtocol {
 
 final class LoginViewModel: LoginViewModelProtocol {
     
-    private weak var view: LoginViewDelegate?
+    private weak var view: LoginViewProtocol?
+    private let authManager: AuthManagerProtocol
     private var currentNonce: String?
     
-    init(view: LoginViewDelegate) {
+    init(view: LoginViewProtocol,
+         authManager: AuthManagerProtocol = AuthManager.shared) {
         self.view = view
+        self.authManager = authManager
     }
 
 // MARK: - Sign in button Action
@@ -31,7 +35,7 @@ final class LoginViewModel: LoginViewModelProtocol {
         if email.isEmpty, password.isEmpty {
             self.view?.onError(title: "Error!", message: GeneralError.emptyUsernameOrPasswordError.rawValue)
         } else {
-            AuthManager.shared.signUp(email: email, password: password) { results in
+            authManager.signUp(email: email, password: password) { results in
                 switch results {
                 case .failure(let error):
                     self.view?.onError(title: "Error!", message: error.rawValue)
@@ -45,7 +49,7 @@ final class LoginViewModel: LoginViewModelProtocol {
 // MARK: - Login Button Action
     func didTapLogin(email: String, password: String) {
         if !email.isEmpty, !password.isEmpty {
-            AuthManager.shared.login(email: email, password: password) { results in
+            authManager.login(email: email, password: password) { results in
                 switch results {
                 case .failure(let error):
                     self.view?.onError(title: "Error!", message: error.rawValue)
@@ -74,6 +78,11 @@ final class LoginViewModel: LoginViewModelProtocol {
         return request
     }
     
+    private func createCredential(withProviderID: String, idToken: String, rawNonce: String) -> OAuthCredential {
+        let credential = OAuthProvider.credential(withProviderID: withProviderID, idToken: idToken, rawNonce: rawNonce)
+        return credential
+    }
+    
     func didCompleteWithAuthorization(authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
@@ -88,9 +97,9 @@ final class LoginViewModel: LoginViewModelProtocol {
                 return
             }
         
-            let credential = AuthManager.shared.createCredential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+            let credential = createCredential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             
-            AuthManager.shared.signInWithApple(credential: credential) { (results) in
+            authManager.signInWithApple(credential: credential) { (results) in
                 switch results {
                 case .failure(let error):
                     self.view?.onError(title: "Error!", message: error.rawValue)

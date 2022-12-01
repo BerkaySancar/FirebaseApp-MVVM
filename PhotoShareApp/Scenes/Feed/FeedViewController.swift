@@ -9,8 +9,9 @@ import SDWebImage
 
 protocol FeedViewProtocol: AnyObject {
     
+    func beginRefreshing()
+    func endRefreshing()
     func dataRefreshed()
-    func setLoading(isLoading: Bool)
     func onError(title: String, message: String)
     func prepareTableView()
     func showCurrentUserEmail(email: String)
@@ -59,15 +60,15 @@ extension FeedViewController: FeedViewProtocol {
     func showCurrentUserEmail(email: String) {
         self.currentUserLabel.text = email
     }
-   
-    func setLoading(isLoading: Bool) {
-        if isLoading == true {
-            self.activityIndicator.isHidden = false
-            self.activityIndicator.startAnimating()
-        } else {
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-        }
+    
+    func beginRefreshing() {
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+    
+    func endRefreshing() {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
     }
     
     func dataRefreshed() {

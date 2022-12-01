@@ -6,13 +6,14 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseAuth
 
 protocol AuthManagerProtocol {
     func login(email: String, password: String, completion: @escaping (Result<String, FirebaseError>) -> Void)
     func signUp(email: String, password: String, completion: @escaping (Result<String, FirebaseError>) -> Void)
     func signInWithApple(credential: OAuthCredential, completion: @escaping (Result<String, FirebaseError>) -> Void)
     func signOut(completion: @escaping (Result<String, FirebaseError>) -> Void)
+    func showCurrentUserEmail() -> String
 }
 
 struct AuthManager: AuthManagerProtocol {
@@ -58,11 +59,6 @@ extension AuthManager {
         }
     }
     
-    func createCredential(withProviderID: String, idToken: String, rawNonce: String) -> OAuthCredential {
-        let credential = OAuthProvider.credential(withProviderID: withProviderID, idToken: idToken, rawNonce: rawNonce)
-        return credential
-    }
-
 // MARK: - Sign out
     func signOut(completion: @escaping (Result<String, FirebaseError>) -> Void) {
         do {
@@ -71,5 +67,13 @@ extension AuthManager {
         } catch {
             completion(.failure(.signOutError))
         }
+    }
+ 
+// MARK: - Show Current User Email
+    func showCurrentUserEmail() -> String {
+        if let email = auth.currentUser?.email {
+            return email
+        }
+        return ""
     }
 }
