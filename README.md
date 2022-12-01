@@ -7,6 +7,7 @@
 - Auto Layout
 - **Firebase Authentication & Firestore Databese & Storage**
 - **Sign in with Apple**
+- **Unit Tests**
 - UITableView
 - PHPickerViewController
 
